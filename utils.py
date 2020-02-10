@@ -1,4 +1,46 @@
 import numpy as np 
+import torch.nn.functional as F
+
+def dice_loss(input, target):
+    
+    #performs softmax over last layer before computing loss
+    #backprop can be called using dice_loss.backward()
+    #input: final layer output before softmax (nxcxwxh)
+    #target: one-hot encoded labels (nxcxwxh)
+
+    assert input.size() == target.size()
+
+    ####################################
+
+    #prod_p_g = pred * target
+    #prod_p_g = torch.sum(prod_p_g, dim = (1, 2, 3))
+
+    #cardinality = torch.sum(pred + target, dim = (1, 2, 3))
+
+    #score = 2. * prod_p_g / (cardinality + 0.00001)
+
+    #return torch.mean(torch.tensor(1.) - score)
+    
+    ####################################
+    
+    pred = F.softmax(input, dim = 1)
+
+    p_g = pred * target
+    p_g = torch.sum(torch.sum(p_g, dim = 3), dim = 2)
+
+    p_sq = pred * pred
+    p_sq = torch.sum(torch.sum(p_sq, dim = 3), dim = 2)
+
+    g_sq = target * target
+    g_sq = torch.sum(torch.sum(g_sq, dim = 3), dim = 2)
+
+    dice = 2. * (p_g / (p_sq + g_sq + 0.00001))
+    dice_per_channel = 1. - (torch.sum(dice, dim = 1))
+
+    dice_total = torch.sum(dice_per_channel) / dice_per_channel.size(0)
+
+    return dice_total
+
 
 def iou(pred, target):
     ious = []
