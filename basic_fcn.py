@@ -70,7 +70,7 @@ class FCN(nn.Module):
         ])
         
         # Final output layer to have a 30 output classes
-        self.classifier = nn.Conv2d(32, 30, kernel_size=1)
+        self.classifier = nn.Conv2d(32, self.n_class, kernel_size=1)
         # self.bnd1    = nn.BatchNorm2d(32)
         
         # self.conv2   = nn.Conv2d(32, 64, kernel_size=3, stride=2, padding=1, dilation=1)
