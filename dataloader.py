@@ -85,6 +85,7 @@ class CityScapesDataset(Dataset):
         self.data      = pd.read_csv(csv_file)
         self.means     = means
         self.n_class   = n_class
+        self.transforms = transforms
         # Add any transformations here
 
     def __len__(self):
@@ -93,25 +94,51 @@ class CityScapesDataset(Dataset):
     def __getitem__(self, idx):
         img_name   = self.data.iloc[idx, 0]
 
-        img = np.asarray(Image.open(img_name).convert('RGB'))
         label_name = self.data.iloc[idx, 1]
-        label      = np.asarray(Image.open(label_name))
 
+        if self.transforms == None:
+            img = np.asarray(Image.open(img_name).convert('RGB'))
+            label      = np.asarray(Image.open(label_name))
+            label2      = np.asarray(Image.open(label_name))
+        else:
+            img = Image.open(img_name).convert('RGB')
+            label      = Image.open(label_name)
+            label2      = np.asarray(Image.open(label_name))
+            
+            
+    
+        if self.transforms == None:
         # reduce mean
-        img = img[:, :, ::-1]  # switch to BGR
-        img = np.transpose(img, (2, 0, 1)) / 255.
-        img[0] -= self.means[0]
-        img[1] -= self.means[1]
-        img[2] -= self.means[2]
+            img = img[:, :, ::-1]  # switch to BGR
+            img = np.transpose(img, (2, 0, 1)) / 255.
+            img[0] -= self.means[0]
+            img[1] -= self.means[1]
+            img[2] -= self.means[2]
 
+            
+        #transform
+        if self.transforms != None:
+            degree = np.random.randint(360)
+            transforms_list = [transforms.RandomRotation((degree,degree)), transforms.RandomHorizontalFlip(p=1),transforms.RandomRotation((degree,degree))]
+                
+            i = np.random.randint(0,len(transforms_list))
+            trans_image = transforms.Compose([transforms_list[i],transforms.ToTensor(),transforms.Normalize((self.means[0],self.means[1],self.means[2]),(0.5,0.5,0.5))])
+            img = trans_image(img)
+            trans = transforms.Compose([transforms_list[i], transforms.ToTensor()])#,transforms.ToTensor()
+            print('label tranforms: ', trans)
+            label = trans(label)
+            label = np.squeeze(label, axis=0)
+           
+            
         # convert to tensor
-        img = torch.from_numpy(img.copy()).float()
-        label = torch.from_numpy(label.copy()).long()
-
+        if self.transforms == None:
+            img = torch.from_numpy(img.copy()).float()
+            label = torch.from_numpy(label.copy()).long()
+        
         # create one-hot encoding
-        h, w = label.shape
+        h, w = label2.shape
         target = torch.zeros(self.n_class, h, w)
         for c in range(self.n_class):
-            target[c][label == c] = 1
+            target[c][label2 == c] = 1
 
         return img, target, label
