@@ -6,51 +6,71 @@ class FCN(nn.Module):
     def __init__(self, n_class):
         super().__init__()
         self.n_class = n_class
-        self.features = nn.Sequential(
-            nn.Conv2d(3, 32, kernel_size=3, stride=2, padding=1, dilation=1),
-            nn.ReLU(inplace=True),
-            nn.BatchNorm2d(32),
+        self.encoder = nn.ModuleList([ 
+            nn.Sequential(
+                nn.Conv2d(3, 32, kernel_size=3, stride=2, padding=1, dilation=1),
+                nn.ReLU(inplace=True),
+                nn.BatchNorm2d(32),
+                ),
+            
+            nn.Sequential(
+                nn.Conv2d(32, 64, kernel_size=3, stride=2, padding=1, dilation=1),
+                nn.ReLU(inplace=True),
+                nn.BatchNorm2d(64),
+                ),
+            
+            
+            nn.Sequential(
+                nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1, dilation=1),
+                nn.ReLU(inplace=True),
+                nn.BatchNorm2d(128),
+                ),
+            
+            nn.Sequential(
+                nn.Conv2d(128,256, kernel_size=3, stride=2, padding=1, dilation=1),
+                nn.ReLU(inplace=True),
+                nn.BatchNorm2d(256),
+                ),
+            
+            
+            nn.Sequential(
+                nn.Conv2d(256, 512, kernel_size=3, stride=2, padding=1, dilation=1),
+                nn.ReLU(inplace=True),
+                nn.BatchNorm2d(512),
+                ),
+        ])
         
-            nn.Conv2d(32, 64, kernel_size=3, stride=2, padding=1, dilation=1),
-            nn.ReLU(inplace=True),
-            nn.BatchNorm2d(64),
+        self.decoder = nn.ModuleList([
         
-            nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1, dilation=1),
-            nn.ReLU(inplace=True),
-            nn.BatchNorm2d(128),
+            nn.Sequential(
+                nn.ConvTranspose2d(512, 512, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
+                nn.ReLU(inplace=True),
+                nn.BatchNorm2d(512),),
         
-            nn.Conv2d(128,256, kernel_size=3, stride=2, padding=1, dilation=1),
-            nn.ReLU(inplace=True),
-            nn.BatchNorm2d(256),
+            nn.Sequential(
+                nn.ConvTranspose2d(512, 256, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
+                nn.ReLU(inplace=True),
+                nn.BatchNorm2d(256),),
+            
+            nn.Sequential(
+                nn.ConvTranspose2d(256, 128, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
+                nn.ReLU(inplace=True),
+                nn.BatchNorm2d(128),),
+            
+            nn.Sequential(
+                nn.ConvTranspose2d(128, 64, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
+                nn.ReLU(inplace=True),
+                nn.BatchNorm2d(64),),
         
-            nn.Conv2d(256, 512, kernel_size=3, stride=2, padding=1, dilation=1),
-            nn.ReLU(inplace=True),
-            nn.BatchNorm2d(512),
+            
+            nn.Sequential(
+                nn.ConvTranspose2d(64, 32, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
+                nn.ReLU(inplace=True),
+                nn.BatchNorm2d(32))
+        ])
         
-            nn.ReLU(inplace=True),
-        
-            nn.ConvTranspose2d(512, 512, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-            nn.ReLU(inplace=True),
-            nn.BatchNorm2d(512),
-        
-            nn.ConvTranspose2d(512, 256, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-            nn.ReLU(inplace=True),
-            nn.BatchNorm2d(256),
-        
-            nn.ConvTranspose2d(256, 128, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-            nn.ReLU(inplace=True),
-            nn.BatchNorm2d(128),
-        
-            nn.ConvTranspose2d(128, 64, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-            nn.ReLU(inplace=True),
-            nn.BatchNorm2d(64),
-        
-            nn.ConvTranspose2d(64, 32, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-            nn.ReLU(inplace=True),
-            nn.BatchNorm2d(32)
-        )
-        
-        self.classifier = nn.Conv2d(32, 3, kernel_size=1)
+        # Final output layer to have a 30 output classes
+        self.classifier = nn.Conv2d(32, 30, kernel_size=1)
         # self.bnd1    = nn.BatchNorm2d(32)
         
         # self.conv2   = nn.Conv2d(32, 64, kernel_size=3, stride=2, padding=1, dilation=1)
@@ -83,30 +103,7 @@ class FCN(nn.Module):
         # self.bn5     = nn.BatchNorm2d(32)
         # self.classifier = nn.Conv2d(32, 3, kernel_size=1)
         
-#         self.features = nn.Sequential(
-#             nn.Conv2d(3, 32, kernel_size=3, stride=2, padding=1, dilation=1),
-#             nn.BatchNorm2d(32),
-#             nn.Conv2d(32, 64, kernel_size=3, stride=2, padding=1, dilation=1),
-#             nn.BatchNorm2d(64),
-#             nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1, dilation=1),
-#             nn.BatchNorm2d(128),
-#             nn.Conv2d(128,256, kernel_size=3, stride=2, padding=1, dilation=1),
-#             nn.BatchNorm2d(256),
-#             nn.Conv2d(256, 512, kernel_size=3, stride=2, padding=1, dilation=1),
-#             nn.BatchNorm2d(512),
-#             nn.ReLU(inplace=True),
-#             nn.ConvTranspose2d(512, 512, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-#             nn.BatchNorm2d(512),
-#             nn.ConvTranspose2d(512, 256, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-#             nn.BatchNorm2d(256),
-#             nn.ConvTranspose2d(256, 128, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-#             nn.BatchNorm2d(128),
-#             nn.ConvTranspose2d(128, 64, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-#             nn.BatchNorm2d(64),
-#             nn.ConvTranspose2d(64, 32, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-#             nn.BatchNorm2d(32),
-#             nn.Conv2d(32, 3, kernel_size=1)
-#         )
+
         
         
 
@@ -132,12 +129,18 @@ class FCN(nn.Module):
         #     self.bn2(self.relu(self.deconv2(
         #     self.bn1(self.relu(self.deconv1(out_encoder)))))))))))))))
         
-        out_decoder = self.features(x)
+        out_encoder = x
+        for layer in self.encoder:
+            # Can use this to append to layers on reverse operations
+            out_encoder = layer(out_encoder)
+            out_encoder = nn.MaxPool2d(2,2)(out_encoder)
+            
         
-        # Complete the forward function for the rest of the encoder
-
-        #score = __(self.relu(__(out_encoder)))     
-        # Complete the forward function for the rest of the decoder
+        out_decoder = out_encoder
+        
+        for layer in self.decoder:
+            out_decoder = layer(out_decoder)
+        
         
         score = self.classifier(out_decoder)                   
 
