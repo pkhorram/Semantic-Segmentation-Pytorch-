@@ -10,58 +10,57 @@ class Unet(nn.Module):
         self.encoder = nn.ModuleList([ 
             nn.Sequential(
                 nn.Conv2d(3, 64, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(64),
+                nn.ReLU(inplace=True),
                 
                 # Consider removing padding
                 nn.Conv2d(64, 64, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(64),
+                nn.ReLU(inplace=True),
                 
                 ),
             
             nn.Sequential(
                 nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(128),
+                nn.ReLU(inplace=True),
                 
                 nn.Conv2d(128, 128, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(128),
+                nn.ReLU(inplace=True),
 
                 ),
             
             nn.Sequential(
                 nn.Conv2d(128,256, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(256),
+                nn.ReLU(inplace=True),
                 
                 nn.Conv2d(256,256, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(256),
+                nn.ReLU(inplace=True),
 
                 ),
             
             
             nn.Sequential(
                 nn.Conv2d(256, 512, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(512),
+                nn.ReLU(inplace=True),
                 
                 nn.Conv2d(512, 512, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(512),
+                nn.ReLU(inplace=True),
                 
                 ),
             nn.Sequential(
                 nn.Conv2d(512, 1024, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(1024),
+                nn.ReLU(inplace=True),
                 
                 nn.Conv2d(1024, 1024, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(1024),
-                
+                nn.ReLU(inplace=True),
                 ),
             ])
         
@@ -70,67 +69,66 @@ class Unet(nn.Module):
             
             nn.Sequential(
                 nn.ConvTranspose2d(1024, 512, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(512),
+                nn.ReLU(inplace=True),
                 
                 
                 ),
             nn.Sequential(
                 nn.ConvTranspose2d(512, 256, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(256),
-                
+                nn.ReLU(inplace=True),
                 ),
         
             nn.Sequential(
                 nn.ConvTranspose2d(256, 128, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(128),
+                nn.ReLU(inplace=True),
                 ),
             
             nn.Sequential(
                 nn.ConvTranspose2d(128, 64, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(64),
+                nn.ReLU(inplace=True),
                 ),
             
             ])
         self.decoder = nn.ModuleList([ 
             nn.Sequential(
                 nn.Conv2d(1024,512, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(512),
+                nn.ReLU(inplace=True),
                 
                 nn.Conv2d(512,512, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(512),
+                nn.ReLU(inplace=True),
                 ),
             nn.Sequential(
                 nn.Conv2d(512,256, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(256),
+                nn.ReLU(inplace=True),
                 
                 nn.Conv2d(256,256, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(256),
+                nn.ReLU(inplace=True),
                 ),
             nn.Sequential(
                 nn.Conv2d(256,128, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(128),
+                nn.ReLU(inplace=True),
                 
                 nn.Conv2d(128,128, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(128),
+                nn.ReLU(inplace=True),
                 ),
             nn.Sequential(
                 nn.Conv2d(128,64, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(64),
+                nn.ReLU(inplace=True),
                 
                 nn.Conv2d(64,64, kernel_size=3, stride=2, padding=1, dilation=1),
-                nn.ReLU(inplace=True),
                 nn.BatchNorm2d(64),
+                nn.ReLU(inplace=True),
                 ),
         ])
         
