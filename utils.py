@@ -42,12 +42,25 @@ def dice_loss(input, target):
     return dice_total
 
 
-def iou(pred, target):
+def iou(pred, labels):
+    
+    # This function returns a list that contains the iou for each class over a batch of images
+    
     ious = []
+    pred = pred.numpy()
+    labels = labels.numpy()
+    n_class = pred.shape[1]
+    
+    pred = np.argmax(pred, axis = 1)
+    
+    
+    pred = pred.reshape(pred.shape[0], -1)
+    labels = labels.reshape(labels.shape[0], -1)
+    
     for cls in range(n_class):
-        # Complete this function
-        intersection = np.sum(np.multiply(pred == cls, target == cls))
-        union = np.sum(pred == cls) + np.sum(target == cls)
+           
+        intersection = np.sum(np.multiply(pred == cls, labels == cls))
+        union = np.sum(pred == cls) + np.sum(labels == cls)
         if union == 0:
             ious.append(float('nan'))  # if there is no ground truth, do not include in evaluation
         else:
@@ -55,5 +68,13 @@ def iou(pred, target):
     return ious
 
 
-def pixel_acc(pred, target):
-    np.sum(np.sum(pred == target))/(pred.shape[0]*pred.shape[1])
+def pixel_acc(pred, labels):
+    
+    pred = pred.numpy()
+    labels = labels.numpy()
+    
+    pred = np.argmax(pred, axis = 1)
+    
+    acc = np.sum(pred == labels)/(pred.shape[0]*pred.shape[1]*pred.shape[2])
+    return acc
+    
