@@ -125,7 +125,6 @@ class CityScapesDataset(Dataset):
             trans_image = transforms.Compose([transforms_list[i],transforms.ToTensor(),transforms.Normalize((self.means[0],self.means[1],self.means[2]),(0.5,0.5,0.5))])
             img = trans_image(img)
             trans = transforms.Compose([transforms_list[i], transforms.ToTensor()])#,transforms.ToTensor()
-            print('label tranforms: ', trans)
             label = trans(label)
             label = np.squeeze(label, axis=0)
            
