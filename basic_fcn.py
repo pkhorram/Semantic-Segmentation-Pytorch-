@@ -134,18 +134,25 @@ class FCN(nn.Module):
         #     self.bn1(self.relu(self.deconv1(out_encoder)))))))))))))))
         
         out_encoder = x
+        print('xshape: ', x.size())
         for layer in self.encoder:
             # Can use this to append to layers on reverse operations
             out_encoder = layer(out_encoder)
-            out_encoder = nn.MaxPool2d(2,2)(out_encoder)
+#             out_encoder = nn.MaxPool2d(2,2)(out_encoder)
+            print('in encoder: ', out_encoder.size())
+            
+        print('out_encoder size: ', out_encoder.size())
             
         
         out_decoder = out_encoder
         
         for layer in self.decoder:
             out_decoder = layer(out_decoder)
+            print('in decoder: ', out_decoder.size())
+
+        print('out_decoder size: ', out_decoder.size())
         
-        
-        score = self.classifier(out_decoder)                   
+        score = self.classifier(out_decoder)  
+        print('score size: ', score.size())
 
         return score  # size=(N, n_class, x.H/1, x.W/1)
