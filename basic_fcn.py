@@ -6,37 +6,38 @@ class FCN(nn.Module):
     def __init__(self, n_class):
         super().__init__()
         self.n_class = n_class
+        self.relu = nn.ReLU(inplace=True)
         self.encoder = nn.ModuleList([ 
             nn.Sequential(
                 nn.Conv2d(3, 32, kernel_size=3, stride=2, padding=1, dilation=1),
                 nn.BatchNorm2d(32),
-                nn.ReLU(inplace=True),
+                self.relu,
                 ),
             
             nn.Sequential(
                 nn.Conv2d(32, 64, kernel_size=3, stride=2, padding=1, dilation=1),
                 nn.BatchNorm2d(64),
-                nn.ReLU(inplace=True),
+                self.relu,
                 ),
             
             
             nn.Sequential(
                 nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1, dilation=1),
                 nn.BatchNorm2d(128),
-                nn.ReLU(inplace=True),
+                self.relu,
                 ),
             
             nn.Sequential(
                 nn.Conv2d(128,256, kernel_size=3, stride=2, padding=1, dilation=1),
                 nn.BatchNorm2d(256),
-                nn.ReLU(inplace=True),
+                self.relu,
                 ),
             
             
             nn.Sequential(
                 nn.Conv2d(256, 512, kernel_size=3, stride=2, padding=1, dilation=1),
                 nn.BatchNorm2d(512),
-                nn.ReLU(inplace=True),
+                self.relu,
                 ),
         ])
         
@@ -45,32 +46,32 @@ class FCN(nn.Module):
             nn.Sequential(
                 nn.ConvTranspose2d(512, 512, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
                 nn.BatchNorm2d(512),
-                nn.ReLU(inplace=True),
+                self.relu,
                 ),
         
             nn.Sequential(
                 nn.ConvTranspose2d(512, 256, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
                 nn.BatchNorm2d(256),
-                nn.ReLU(inplace=True),
+                self.relu,
                 ),
             
             nn.Sequential(
                 nn.ConvTranspose2d(256, 128, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
                 nn.BatchNorm2d(128),
-                nn.ReLU(inplace=True),
+                self.relu,
                 ),
             
             nn.Sequential(
                 nn.ConvTranspose2d(128, 64, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
                 nn.BatchNorm2d(64),
-                nn.ReLU(inplace=True),
+                self.relu,
                 ),
         
             
             nn.Sequential(
                 nn.ConvTranspose2d(64, 32, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
                 nn.BatchNorm2d(32),
-                nn.ReLU(inplace=True),
+                self.relu,
                 )
         ])
         
