@@ -48,20 +48,20 @@ def iou(pred, labels):
     # This function returns a list that contains the iou for each class over a batch of images
     
     ious = []
-    pred = pred.numpy()
-    labels = labels.numpy()
     n_class = pred.shape[1]
+    print(n_class)
     
-    pred = np.argmax(pred, axis = 1)
+    pred = torch.argmax(pred, dim = 1)
     
     
-    pred = pred.reshape(pred.shape[0], -1)
-    labels = labels.reshape(labels.shape[0], -1)
+    pred = pred.view(pred.shape[0], -1)
+    labels = labels.view(labels.shape[0], -1)
+    
     
     for cls in range(n_class):
            
-        intersection = np.sum(np.multiply(pred == cls, labels == cls))
-        union = np.sum(pred == cls) + np.sum(labels == cls)
+        intersection = torch.sum(torch.mul((pred == cls).cuda(), (labels == cls).cuda()))
+        union = torch.sum(pred == cls) + torch.sum(labels == cls) - intersection
         if union == 0:
             ious.append(float('nan'))  # if there is no ground truth, do not include in evaluation
         else:
@@ -71,11 +71,8 @@ def iou(pred, labels):
 
 def pixel_acc(pred, labels):
     
-    pred = pred.numpy()
-    labels = labels.numpy()
+    pred = torch.argmax(pred, dim=1)
     
-    pred = np.argmax(pred, axis = 1)
-    
-    acc = np.sum(pred == labels)/(pred.shape[0]*pred.shape[1]*pred.shape[2])
-    return acc
+    acc = torch.sum(pred == labels)/(pred.shape[0]*pred.shape[1]*pred.shape[2])
+    return acc*100
     
