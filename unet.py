@@ -15,9 +15,9 @@ class Unet(nn.Module):
                 self.relu,
                 
                 # Consider removing padding
-                nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1, dilation=1),
-                nn.BatchNorm2d(64),
-                self.relu,
+#                 nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1, dilation=1),
+#                 nn.BatchNorm2d(64),
+#                 self.relu,
                 
                 ),
             
@@ -26,9 +26,9 @@ class Unet(nn.Module):
                 nn.BatchNorm2d(128),
                 self.relu,
                 
-                nn.Conv2d(128, 128, kernel_size=3, stride=1, padding=1, dilation=1),
-                nn.BatchNorm2d(128),
-                self.relu,
+#                 nn.Conv2d(128, 128, kernel_size=3, stride=1, padding=1, dilation=1),
+#                 nn.BatchNorm2d(128),
+#                 self.relu,
 
                 ),
             
@@ -37,9 +37,9 @@ class Unet(nn.Module):
                 nn.BatchNorm2d(256),
                 self.relu,
                 
-                nn.Conv2d(256,256, kernel_size=3, stride=1, padding=1, dilation=1),
-                nn.BatchNorm2d(256),
-                self.relu,
+#                 nn.Conv2d(256,256, kernel_size=3, stride=1, padding=1, dilation=1),
+#                 nn.BatchNorm2d(256),
+#                 self.relu,
 
                 ),
             
@@ -49,32 +49,32 @@ class Unet(nn.Module):
                 nn.BatchNorm2d(512),
                 self.relu,
                 
-                nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=1, dilation=1),
-                nn.BatchNorm2d(512),
-                self.relu,
+#                 nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=1, dilation=1),
+#                 nn.BatchNorm2d(512),
+#                 self.relu,
                 
                 ),
-            nn.Sequential(
-                nn.Conv2d(512, 1024, kernel_size=3, stride=1, padding=1, dilation=1),
-                nn.BatchNorm2d(1024),
-                self.relu,
+#             nn.Sequential(
+#                 nn.Conv2d(512, 1024, kernel_size=3, stride=1, padding=1, dilation=1),
+#                 nn.BatchNorm2d(1024),
+#                 self.relu,
                 
-                nn.Conv2d(1024, 1024, kernel_size=3, stride=1, padding=1, dilation=1),
-                nn.BatchNorm2d(1024),
-                self.relu,
-                ),
+# #                 nn.Conv2d(1024, 1024, kernel_size=3, stride=1, padding=1, dilation=1),
+# #                 nn.BatchNorm2d(1024),
+# #                 self.relu,
+#                 ),
             ])
         
         
         self.upConvs = nn.ModuleList([
             
-            nn.Sequential(
-                nn.ConvTranspose2d(1024, 512, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
-                nn.BatchNorm2d(512),
-                self.relu,
+#             nn.Sequential(
+#                 nn.ConvTranspose2d(1024, 512, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
+#                 nn.BatchNorm2d(512),
+#                 self.relu,
                 
                 
-                ),
+#                 ),
             nn.Sequential(
                 nn.ConvTranspose2d(512, 256, kernel_size=3, stride=2, padding=1, dilation=1, output_padding=1),
                 nn.BatchNorm2d(256),
@@ -95,41 +95,41 @@ class Unet(nn.Module):
             
             ])
         self.decoder = nn.ModuleList([ 
-            nn.Sequential(
-                nn.Conv2d(1024,512, kernel_size=3, stride=1, padding=1, dilation=1),
-                nn.BatchNorm2d(512),
-                self.relu,
+#             nn.Sequential(
+#                 nn.Conv2d(1024,512, kernel_size=3, stride=1, padding=1, dilation=1),
+#                 nn.BatchNorm2d(512),
+#                 self.relu,
                 
-                nn.Conv2d(512,512, kernel_size=3, stride=1, padding=1, dilation=1),
-                nn.BatchNorm2d(512),
-                self.relu,
-                ),
+# #                 nn.Conv2d(512,512, kernel_size=3, stride=1, padding=1, dilation=1),
+# #                 nn.BatchNorm2d(512),
+# #                 self.relu,
+#                 ),
             nn.Sequential(
                 nn.Conv2d(512,256, kernel_size=3, stride=1, padding=1, dilation=1),
                 nn.BatchNorm2d(256),
                 self.relu,
                 
-                nn.Conv2d(256,256, kernel_size=3, stride=1, padding=1, dilation=1),
-                nn.BatchNorm2d(256),
-                self.relu,
+#                 nn.Conv2d(256,256, kernel_size=3, stride=1, padding=1, dilation=1),
+#                 nn.BatchNorm2d(256),
+#                 self.relu,
                 ),
             nn.Sequential(
                 nn.Conv2d(256,128, kernel_size=3, stride=1, padding=1, dilation=1),
                 nn.BatchNorm2d(128),
                 self.relu,
                 
-                nn.Conv2d(128,128, kernel_size=3, stride=1, padding=1, dilation=1),
-                nn.BatchNorm2d(128),
-                self.relu,
+#                 nn.Conv2d(128,128, kernel_size=3, stride=1, padding=1, dilation=1),
+#                 nn.BatchNorm2d(128),
+#                 self.relu,
                 ),
             nn.Sequential(
                 nn.Conv2d(128,64, kernel_size=3, stride=1, padding=1, dilation=1),
                 nn.BatchNorm2d(64),
                 self.relu,
                 
-                nn.Conv2d(64,64, kernel_size=3, stride=1, padding=1, dilation=1),
-                nn.BatchNorm2d(64),
-                self.relu,
+#                 nn.Conv2d(64,64, kernel_size=3, stride=1, padding=1, dilation=1),
+#                 nn.BatchNorm2d(64),
+#                 self.relu,
                 ),
         ])
         
@@ -143,28 +143,31 @@ class Unet(nn.Module):
     def forward(self, x):
         
         
-        out_encoder = x
         skipConnections = []
-        for layer in self.encoder:
+        for layer in self.encoder[:-1]:
             # Can use this to append to layers on reverse operations
-            out_encoder = layer(out_encoder)
-            skipConnections.append(out_encoder)
-            out_encoder = nn.MaxPool2d(2,2)(out_encoder)
+            x = layer(x)
+            skipConnections.append(x)
+            x = nn.MaxPool2d(2,2)(x)
             
         
-        # First up scaling which will need to be concatenated with last pooled
-        skipConnections.reverse()
-        out_decoder = out_encoder
+        # Final encoding without maxpool/skip connection
+        x = self.encoder[-1](x)
         
         for i, layer in enumerate(self.decoder):
             # First upscale
-            out_decoder = self.upConvs[i](out_decoder)
+            x = self.upConvs[i](x)
+            
             # Merge with corresponding output
-            out_decoder = torch.cat([skipConnections[i], out_decoder], axis=1)
+            x = torch.cat([skipConnections.pop(), x], axis=1)
+            
             # Convolutions
-            out_decoder = layer(out_decoder)
-        
-        
-        score = self.classifier(out_decoder)                   
-
-        return score  
+            x = layer(x)
+            
+        del skipConnections
+        del layer
+        pred = self.classifier(x)
+        del x
+        return pred
+    
+    

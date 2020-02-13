@@ -85,19 +85,18 @@ class FCN(nn.Module):
 
     def forward(self, x):
         
-        out_encoder = x
+        
         for layer in self.encoder:
             # Can use this to append to layers on reverse operations
-            out_encoder = layer(out_encoder)
+            x = layer(x)
             #out_encoder = nn.MaxPool2d(2)(out_encoder)
             
-        
-        out_decoder = out_encoder
-        
-        for layer in self.decoder:
-            out_decoder = layer(out_decoder)
             
+        for layer in self.decoder:
+            x = layer(x)
+            
+        del layer  
+        pred = self.classifier(x)
+        del x
         
-        
-        score = self.classifier(out_decoder)   
-        return score  # size=(N, n_class, x.H/1, x.W/1)
+        return pred
