@@ -36,7 +36,7 @@ def dice_loss(input, target):
     g_sq = torch.sum(torch.sum(g_sq, dim = 3), dim = 2)
 
     dice = 2. * (p_g / (p_sq + g_sq + 0.00001))
-    dice_per_channel = 1. - (torch.sum(dice, dim = 1))
+    dice_per_channel = 1. - (torch.sum(dice, dim = 0))
 
     dice_total = torch.sum(dice_per_channel) / dice_per_channel.size(0)
 
