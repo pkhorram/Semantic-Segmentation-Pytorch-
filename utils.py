@@ -65,7 +65,7 @@ def iou(pred, labels):
         if union == 0:
             ious.append(float('nan'))  # if there is no ground truth, do not include in evaluation
         else:
-            ious.append(intersection/union)
+            ious.append(float(intersection)/float(union))
     return ious
 
 
