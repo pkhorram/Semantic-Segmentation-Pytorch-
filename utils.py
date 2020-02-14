@@ -1,6 +1,7 @@
 import numpy as np 
 import torch.nn.functional as F
 import torch
+from dataloader import *
 
 def dice_loss(input, target):
     
@@ -47,9 +48,10 @@ def iou(pred, labels):
     
     # This function returns a list that contains the iou for each class over a batch of images
     
+    print(labels_classes)
     ious = []
     n_class = pred.shape[1]
-    print(n_class)
+    
     
     pred = torch.argmax(pred, dim = 1)
     
@@ -60,6 +62,9 @@ def iou(pred, labels):
     
     for cls in range(n_class):
            
+        if labels_classes[cls].trainId == 255:
+            continue
+        
         intersection = torch.sum(torch.mul((pred == cls).cuda(), (labels == cls).cuda()))
         union = torch.sum(pred == cls) + torch.sum(labels == cls) - intersection
         if union == 0:
