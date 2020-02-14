@@ -49,7 +49,7 @@ def iou(pred, labels):
     
     ious = []
     n_class = pred.shape[1]
-    print(n_class)
+    
     
     pred = torch.argmax(pred, dim = 1)
     
