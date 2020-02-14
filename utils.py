@@ -49,7 +49,7 @@ def iou(pred, labels):
     
     ious = []
     n_class = pred.shape[1]
-    print(n_class)
+#     print(n_class)
     
     pred = torch.argmax(pred, dim = 1)
     
@@ -73,6 +73,6 @@ def pixel_acc(pred, labels):
     
     pred = torch.argmax(pred, dim=1)
     
-    acc = torch.sum(pred == labels)/(pred.shape[0]*pred.shape[1]*pred.shape[2])
+    acc = float(torch.sum(pred == labels))/(pred.shape[0]*pred.shape[1]*pred.shape[2])
     return acc*100
     
