@@ -48,7 +48,7 @@ def iou(pred, labels):
     
     # This function returns a list that contains the iou for each class over a batch of images
     
-    print(labels_classes)
+    
     ious = []
     n_class = pred.shape[1]
     
