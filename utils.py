@@ -48,9 +48,9 @@ def iou(pred, labels):
     
     # This function returns a list that contains the iou for each class over a batch of images
     
+    
     ious = []
     n_class = pred.shape[1]
-
     
     
     pred = torch.argmax(pred, dim = 1)
@@ -66,11 +66,13 @@ def iou(pred, labels):
             continue
         
         intersection = torch.sum(torch.mul((pred == cls).cuda(), (labels == cls).cuda()))
+        intersection_fl = intersection.item()
         union = torch.sum(pred == cls) + torch.sum(labels == cls) - intersection
+        union_fl = union.item()
         if union == 0:
             ious.append(float('nan'))  # if there is no ground truth, do not include in evaluation
         else:
-            ious.append(float(intersection)/float(union))
+            ious.append(float(intersection_fl)/float(union_fl))
     return ious
 
 
