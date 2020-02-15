@@ -81,11 +81,12 @@ labels_classes = [
 
 class CityScapesDataset(Dataset):
 
-    def __init__(self, csv_file, n_class=n_class, transforms=None):
+    def __init__(self, csv_file, n_class=n_class, transforms=None, resizing=False):
         self.data      = pd.read_csv(csv_file)
         self.means     = means
         self.n_class   = n_class
         self.transforms = transforms
+        self.resizing = resizing
         # Add any transformations here
 
     def __len__(self):
@@ -97,13 +98,28 @@ class CityScapesDataset(Dataset):
         label_name = self.data.iloc[idx, 1]
 
         if self.transforms == None:
-            img = np.asarray(Image.open(img_name).convert('RGB'))
-            label      = np.asarray(Image.open(label_name))
-            label2      = np.asarray(Image.open(label_name))
+            img = Image.open(img_name).convert('RGB')
+            label = Image.open(label_name)
+            label2 = Image.open(label_name)
+            if self.resizing == True:
+                img = img.resize((1024, 512))
+                label = label.resize((1024, 512))
+                label2 = label2.resize((1024, 512))    
+            img = np.asarray(img)
+            label = np.asarray(label)
+            label2 = np.asarray(label2)
+            #print('img type: ',type(img))
+            #print('img size: ', img.shape)
+            
         else:
             img = Image.open(img_name).convert('RGB')
-            label      = Image.open(label_name)
-            label2      = np.asarray(Image.open(label_name))
+            label = Image.open(label_name)
+            label2 = Image.open(label_name)
+            if self.resizing == True:
+                img = img.resize((1024, 512))
+                label = label.resize((1024, 512))
+                label2 = label2.resize((1024, 512))
+            label2 = np.asarray(label2)
             
             
     
