@@ -1,0 +1,265 @@
+Lofile DATA: Validation Loss and Accuracy
+writing!
+Finish epoch 0, time elapsed 292.75377655029297
+ training Loss:   0.8263823390007019
+ Validation Loss: 1.703731686592102
+ Validation acc:  52.97663612365723
+ Validation iou:  [[0.49981348 0.09123427 0.31852084        nan        nan 0.00147971
+         nan 0.04778522 0.55914296 0.07031078 0.52340506        nan
+         nan 0.09058225        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 1, time elapsed 241.68574857711792
+ training Loss:   1.4062730073928833
+ Validation Loss: 1.3534476692676545
+ Validation acc:  61.96598320007324
+ Validation iou:  [[6.14568685e-01 1.79006803e-03 3.77799572e-01            nan
+             nan 8.26043792e-06            nan            nan
+  6.01724611e-01 5.42371489e-02 5.23917761e-01            nan
+             nan 1.96906571e-01            nan            nan
+             nan            nan            nan]]
+ writing!
+Finish epoch 2, time elapsed 241.4219093322754
+ training Loss:   1.0745055675506592
+ Validation Loss: 1.1921688644886017
+ Validation acc:  65.96691551208497
+ Validation iou:  [[0.66668384 0.02433987 0.43744425        nan        nan 0.003528
+         nan 0.00612219 0.66774865 0.07995968 0.60997232        nan
+         nan 0.18204457        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 3, time elapsed 241.32210779190063
+ training Loss:   1.2821025848388672
+ Validation Loss: 1.2001731657981873
+ Validation acc:  66.31920051574707
+ Validation iou:  [[0.68482058 0.04936558 0.4547792         nan        nan 0.00167602
+         nan        nan 0.6700187         nan 0.67397443        nan
+         nan 0.22086234        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 4, time elapsed 240.67312335968018
+ training Loss:   1.2614012956619263
+ Validation Loss: 1.1340257818698882
+ Validation acc:  67.38355560302735
+ Validation iou:  [[0.67877809 0.09002587 0.47477896        nan        nan 0.02021311
+         nan 0.02671408 0.6974021  0.11018876 0.68647234 0.00309714
+         nan 0.24083215        nan        nan        nan        nan
+  0.00355563]]
+ writing!
+Finish epoch 5, time elapsed 241.791757106781
+ training Loss:   1.272857427597046
+ Validation Loss: 1.1734907817840576
+ Validation acc:  65.81956405639649
+ Validation iou:  [[0.68347402 0.07745598 0.47239604        nan        nan 0.01752663
+         nan 0.04045917 0.6884133         nan 0.65959115 0.01372871
+         nan 0.2186573         nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 6, time elapsed 241.191091299057
+ training Loss:   0.7121348977088928
+ Validation Loss: 1.200870848417282
+ Validation acc:  65.43924942016602
+ Validation iou:  [[0.67945824 0.10607031 0.43006379        nan        nan 0.00674777
+         nan 0.02967086 0.64595209 0.09574011 0.56428839 0.00434499
+         nan 0.18390245        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 7, time elapsed 240.50379276275635
+ training Loss:   1.0779472589492798
+ Validation Loss: 1.1379353408813477
+ Validation acc:  67.66868705749512
+ Validation iou:  [[0.66502203 0.16133766 0.47314261        nan        nan 0.01807647
+         nan 0.04633929 0.68443005        nan 0.69831648 0.02876106
+         nan 0.22846672        nan        nan        nan        nan
+  0.00143402]]
+ writing!
+Finish epoch 8, time elapsed 240.57895374298096
+ training Loss:   0.9617869257926941
+ Validation Loss: 1.105489626646042
+ Validation acc:  68.70835876464844
+ Validation iou:  [[0.69707932 0.13376454 0.47654584        nan        nan 0.02312771
+         nan 0.03789773 0.71370359        nan 0.67323362 0.01339049
+         nan 0.23460525        nan        nan        nan        nan
+  0.00114606]]
+ writing!
+Finish epoch 9, time elapsed 240.79184436798096
+ training Loss:   0.9443356990814209
+ Validation Loss: 1.05666770029068
+ Validation acc:  70.29486503601075
+ Validation iou:  [[0.71041878 0.11622718 0.50572975        nan        nan 0.0345128
+         nan 0.07650216 0.70358918        nan 0.70262514 0.01834577
+         nan 0.24640428        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 10, time elapsed 240.73814582824707
+ training Loss:   1.0382466316223145
+ Validation Loss: 1.0792999863624573
+ Validation acc:  69.36062545776367
+ Validation iou:  [[0.70950596 0.14713015 0.49389609        nan        nan 0.0326535
+         nan 0.03318899 0.70330742 0.10049849 0.63819564 0.02563149
+         nan 0.26375075        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 11, time elapsed 240.6032829284668
+ training Loss:   1.5628635883331299
+ Validation Loss: 1.062548253774643
+ Validation acc:  69.13955917358399
+ Validation iou:  [[0.6946478  0.17904261 0.48322343        nan        nan 0.12447955
+         nan 0.04176063 0.66528939 0.1179451  0.64217158 0.09860001
+         nan 0.25793807        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 12, time elapsed 240.27954196929932
+ training Loss:   0.5937854051589966
+ Validation Loss: 1.043400717973709
+ Validation acc:  70.67719688415528
+ Validation iou:  [[0.71655894 0.15820432 0.51652193        nan        nan 0.09145689
+         nan 0.06578548 0.68647024 0.1107588  0.6996309  0.08481031
+         nan 0.26617538        nan        nan        nan        nan
+  0.01107356]]
+ writing!
+Finish epoch 13, time elapsed 241.30763578414917
+ training Loss:   0.9316930174827576
+ Validation Loss: 1.0326612584590913
+ Validation acc:  70.68197441101074
+ Validation iou:  [[0.72157241 0.1536534  0.51937501        nan        nan 0.02981677
+         nan 0.02052759 0.69957253 0.1307928  0.69998645 0.02310089
+         nan 0.26129613        nan        nan        nan        nan
+  0.00258547]]
+ writing!
+Finish epoch 14, time elapsed 241.34165954589844
+ training Loss:   1.0977325439453125
+ Validation Loss: 1.0887337567806243
+ Validation acc:  69.86347846984863
+ Validation iou:  [[0.70139372 0.22098346 0.50688697        nan        nan 0.01919786
+         nan 0.03675108 0.66062589        nan 0.70090479 0.0140556
+         nan 0.2295475         nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 15, time elapsed 241.86075043678284
+ training Loss:   0.6445496082305908
+ Validation Loss: 1.1353055307865143
+ Validation acc:  66.94297103881836
+ Validation iou:  [[0.68133584 0.11856352 0.43571037        nan        nan 0.02099339
+         nan 0.07706469 0.69642645        nan 0.69939902 0.0333676
+         nan 0.23159117        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 16, time elapsed 240.76878690719604
+ training Loss:   1.112058162689209
+ Validation Loss: 1.025146870136261
+ Validation acc:  70.68512191772462
+ Validation iou:  [[0.7196151  0.14768726 0.5250304         nan        nan 0.04321816
+         nan 0.06705839 0.71301383 0.09088923 0.69098357 0.10106979
+         nan 0.2725273         nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 17, time elapsed 240.5032298564911
+ training Loss:   0.8653507828712463
+ Validation Loss: 1.0715630247592927
+ Validation acc:  69.18010330200195
+ Validation iou:  [[0.70548062 0.1979651  0.47111643        nan 0.00190082 0.05562735
+         nan 0.08099541 0.7053661  0.13172685 0.66009837 0.00778411
+         nan 0.19850837        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 18, time elapsed 240.5288941860199
+ training Loss:   1.0461041927337646
+ Validation Loss: 0.9869337291717529
+ Validation acc:  72.08261947631836
+ Validation iou:  [[0.72980324 0.20596019 0.5361583         nan        nan 0.05604695
+         nan 0.10072163 0.72078804 0.10722762 0.69495829 0.09692566
+         nan 0.28618598        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 19, time elapsed 240.33749508857727
+ training Loss:   0.8541640043258667
+ Validation Loss: 1.0443182175159453
+ Validation acc:  69.94150276184082
+ Validation iou:  [[0.7169534  0.15015034 0.51982232        nan        nan 0.06036105
+         nan 0.07496323 0.69912071 0.10851184 0.69329825 0.07757798
+         nan 0.26399163        nan        nan        nan        nan
+  0.00165639]]
+ writing!
+Finish epoch 20, time elapsed 240.9359004497528
+ training Loss:   0.8929868340492249
+ Validation Loss: 1.0291785979270935
+ Validation acc:  70.65756225585938
+ Validation iou:  [[7.21374447e-01 2.06788991e-01 5.23235809e-01            nan
+             nan 6.73968715e-02            nan 1.35744894e-01
+  7.04384173e-01            nan 6.87093704e-01 1.08880417e-01
+             nan 2.84081278e-01            nan            nan
+             nan            nan 6.83043311e-04]]
+ writing!
+Finish epoch 21, time elapsed 241.2402491569519
+ training Loss:   0.5508479475975037
+ Validation Loss: 0.9950803673267364
+ Validation acc:  71.70050468444825
+ Validation iou:  [[0.71638405 0.17861762 0.52561394        nan        nan 0.04833993
+  0.00959961 0.08876068 0.71615694 0.1282612  0.69300873 0.07276679
+         nan 0.27405543        nan        nan        nan        nan
+  0.00308548]]
+ writing!
+Finish epoch 22, time elapsed 240.85257530212402
+ training Loss:   0.9801713228225708
+ Validation Loss: 0.9652678279876709
+ Validation acc:  72.37663078308105
+ Validation iou:  [[0.72991203 0.2249915  0.53430286        nan 0.00189746 0.05579006
+         nan 0.0622207  0.71920103 0.10513041 0.69117437 0.0341289
+         nan 0.28661253        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 23, time elapsed 240.59846186637878
+ training Loss:   1.2007731199264526
+ Validation Loss: 1.0072088602781295
+ Validation acc:  71.91376724243165
+ Validation iou:  [[0.71350603 0.11178423 0.53360664        nan        nan 0.05714805
+         nan 0.12867676 0.74073201 0.13001979 0.71885822 0.06578351
+         nan 0.29587258        nan        nan        nan        nan
+         nan]]
+ writing!
+Finish epoch 24, time elapsed 241.38714218139648
+ training Loss:   0.7694143056869507
+ Validation Loss: 0.9814836068153381
+ Validation acc:  71.95586051940919
+ Validation iou:  [[0.71570177 0.11666218 0.53912568        nan 0.00504615 0.06929978
+         nan 0.05250975 0.73548833 0.13036331 0.70247105 0.11828651
+         nan 0.29536876        nan        nan        nan        nan
+  0.00350761]]
+ writing!
+Finish epoch 25, time elapsed 241.1577935218811
+ training Loss:   1.216991662979126
+ Validation Loss: 0.9904852788448334
+ Validation acc:  72.0418487548828
+ Validation iou:  [[0.73325899 0.224074   0.52886125        nan        nan 0.04921769
+         nan 0.07530012 0.70333592 0.12838164 0.68337109 0.10076809
+         nan 0.25672936        nan        nan        nan        nan
+  0.00680433]]
+ writing!
+Finish epoch 26, time elapsed 241.3181459903717
+ training Loss:   1.2459734678268433
+ Validation Loss: 1.0042298991680145
+ Validation acc:  71.65616149902344
+ Validation iou:  [[0.734587   0.21545445 0.51060303        nan 0.00185884 0.0574122
+         nan 0.1395473  0.73326749        nan 0.69502925 0.10708746
+         nan 0.25098842        nan        nan        nan        nan
+  0.00719144]]
+ writing!
+Finish epoch 27, time elapsed 241.23903441429138
+ training Loss:   0.619055986404419
+ Validation Loss: 0.9844042887687683
+ Validation acc:  72.1302993774414
+ Validation iou:  [[0.73683667 0.21310747 0.52591388        nan        nan 0.05191774
+         nan 0.12479807 0.70904025        nan 0.69826382 0.03079364
+         nan 0.25622245        nan        nan        nan        nan
+  0.00800315]]
+ writing!
+Finish epoch 28, time elapsed 240.6565842628479
+ training Loss:   0.7319790720939636
+ Validation Loss: 1.0257426087856292
+ Validation acc:  71.1500129699707
+ Validation iou:  [[0.69542869 0.11440965 0.54103645        nan        nan 0.04557906
+         nan 0.11099286 0.70301058 0.12829788 0.70097324 0.10803311
+         nan 0.28574913        nan        nan        nan        nan
+  0.00559877]]
+ 

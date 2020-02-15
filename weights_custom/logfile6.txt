@@ -1,0 +1,12 @@
+Lofile DATA: Validation Loss and Accuracy
+writing!
+Finish epoch 0, time elapsed 1287.8335511684418
+ training Loss:   1.0826466083526611
+ Validation Loss: 1.8919261527061462
+ Validation acc:  45.88572874069214
+ Validation iou:  [[5.16785754e-01 2.41206919e-02 2.66387837e-01            nan
+             nan 1.50781210e-05            nan 2.28940815e-02
+  2.34129118e-01            nan 5.13516133e-01 3.17048929e-02
+             nan 1.25761269e-01            nan            nan
+             nan            nan            nan]]
+ 
