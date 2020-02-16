@@ -16,6 +16,7 @@ class Custom(nn.Module):
                 nn.Conv2d(6,6, kernel_size=3, stride=1, padding=1, dilation=1),
                 nn.BatchNorm2d(6),
                 self.relu,
+                nn.MaxPool2d(3,1,1)
                 
         )
         
@@ -28,6 +29,7 @@ class Custom(nn.Module):
                 nn.BatchNorm2d(9),
                 self.relu,
                 
+                nn.MaxPool2d(3,1,1)
         )
         
         self.layer3 = nn.Sequential(
@@ -39,6 +41,7 @@ class Custom(nn.Module):
                 nn.BatchNorm2d(18),
                 self.relu,
                 
+                nn.MaxPool2d(3,1,1)
         )
         
         self.layer4 = nn.Sequential(
@@ -50,6 +53,7 @@ class Custom(nn.Module):
                 nn.BatchNorm2d(36),
                 self.relu,
                 
+                nn.MaxPool2d(3,1,1)
         )
         
         
@@ -66,7 +70,7 @@ class Custom(nn.Module):
                 nn.BatchNorm2d(72),
                 self.relu,
                 
-                
+                nn.MaxPool2d(3,1,1) 
                 
         ) 
         
